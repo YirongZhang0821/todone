@@ -24,7 +24,7 @@ set(SOURCES
 
 
 
-add_executable(todone ${SOURCES})
+add_executable(todone WIN32 ${SOURCES})
 target_sources(todone PRIVATE 
     ${CMAKE_SOURCE_DIR}/src/structure.h
     ${CMAKE_SOURCE_DIR}/src/todotablewidget.h
