@@ -15,12 +15,17 @@ TodoTableWidget::TodoTableWidget(QWidget *parent)
     //* Sql List
     QSqlQuery query;
     query.exec(
-        "create table todolist (id integer primary key,\
+        "create table if not exists todolist (id integer primary key,\
          todo text not null,\
           priority text not null,\
           deadline text not null,\
           reminder text,\
           note text)");
+
+    // TODO The creation of records table in not good here
+    query.exec(
+        "create table if not exists records (id integer primary key,\
+         content text not null)");
 
     //* Sql Model
     mSqlTableModel->setTable("todolist");

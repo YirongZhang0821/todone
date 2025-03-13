@@ -10,6 +10,9 @@ public:
     explicit RecordTextEdit(QWidget *parent = nullptr);
     ~RecordTextEdit();
 
+    void saveRecord();
+    void loadRecord();
+
 private:
     QTextEdit *mRecordTextEdit;
 
