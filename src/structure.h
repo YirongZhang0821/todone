@@ -9,6 +9,7 @@
 #include <QWidget>
 
 #include "todotablewidget.h"
+#include "recordtextedit.h"
 
 #define TODONE_VERSION_MAIN "1"
 #define TODONE_VERSION_MODE "0"
@@ -22,6 +23,7 @@ public:
 private:
     QFont mBaseFont = QFont("Monaco Nerd Font, fangsong_gb2312", 12);
     TodoTableWidget *mTodoTableWidget;
+    RecordTextEdit *mRecordTextEdit;
     QTabWidget *mTabWidget;
 };
 #endif

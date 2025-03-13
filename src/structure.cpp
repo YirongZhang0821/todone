@@ -3,12 +3,16 @@
 #include <QTextEdit>
 
 Structure::Structure(QWidget* parent)
-    : QWidget(parent), mTodoTableWidget(new TodoTableWidget(this)), mTabWidget(new QTabWidget(this)) {
+    : QWidget(parent),
+      mTodoTableWidget(new TodoTableWidget(this)),
+      mRecordTextEdit(new RecordTextEdit(this)),
+      mTabWidget(new QTabWidget(this)) {
     resize(800, 600);
     setMinimumSize(800, 600);
     setWindowTitle(QString("todone v") + TODONE_VERSION_MAIN + "." + TODONE_VERSION_MODE);
 
     mTabWidget->addTab(mTodoTableWidget, "todo");
+    mTabWidget->addTab(mRecordTextEdit, "record");
 
     QVBoxLayout* vLayout = new QVBoxLayout(this);
     vLayout->setSpacing(0);
