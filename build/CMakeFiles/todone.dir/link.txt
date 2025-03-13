@@ -1,0 +1,3 @@
+C:\develop\CMake\bin\cmake.exe -E rm -f CMakeFiles\todone.dir/objects.a
+C:\develop\Qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\todone.dir/objects.a @CMakeFiles\todone.dir\objects1.rsp
+C:\develop\Qt\Tools\mingw1310_64\bin\c++.exe -mwindows -Wl,--whole-archive CMakeFiles\todone.dir/objects.a -Wl,--no-whole-archive -o todone.exe -Wl,--out-implib,libtodone.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\todone.dir\linkLibs.rsp
