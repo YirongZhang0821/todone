@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QCoreApplication>
 #include <QSharedMemory>
 
 #include "structure.h"

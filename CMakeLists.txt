@@ -5,12 +5,12 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Sql)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
+
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/delegate
     )
 set(SOURCES
-    res/res.rc
     src/main.cpp 
     src/structure.cpp
     src/todotablewidget.cpp
@@ -20,6 +20,8 @@ set(SOURCES
     src/delegate/prioritydelegate.cpp
     src/delegate/globaldelegate.cpp
 )
+
+
 
 add_executable(todone ${SOURCES})
 target_sources(todone PRIVATE 
