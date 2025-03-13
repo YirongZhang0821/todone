@@ -31,8 +31,9 @@ void PriorityDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionV
 }
 
 void PriorityDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-    
-    if (index.column() == 2) {  // Priority column
+    qDebug() << "\n" << index << index.model();
+    //* index.model() is QSqlTableModel
+    if (index.column() == 2) {  // priority
         QString priority = index.data().toString();
         if (priority == "\u7d27\u6025") {
             painter->setPen(Qt::red);
@@ -41,5 +42,4 @@ void PriorityDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         }
         painter->drawText(option.rect, Qt::AlignCenter, priority);
     }
-    // QStyledItemDelegate::paint(painter, option, index);  // Drawing default cell contents
 }

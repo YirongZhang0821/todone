@@ -11,6 +11,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/delegate
     )
 set(SOURCES
+    res/res.rc
     src/main.cpp 
     src/structure.cpp
     src/todotablewidget.cpp

@@ -15,8 +15,8 @@
 #include <QWidget>
 
 #include "datatimedelegate.h"
-#include "prioritydelegate.h"
 #include "globaldelegate.h"
+#include "prioritydelegate.h"
 
 class TodoTableWidget : public QWidget {
     Q_OBJECT
@@ -38,8 +38,8 @@ private:
     void insertTodo();
     void deleteTodo();
     void completeTodo();
-    void onCellSelected(const QModelIndex &index);
-    void sortByPriority();
-    void updateRowColors();
+
+private slots:
+    void onCellClicked(const QModelIndex &index);
 };
 #endif

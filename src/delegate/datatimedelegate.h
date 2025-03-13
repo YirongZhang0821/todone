@@ -3,6 +3,7 @@
 
 #include <QDateTimeEdit>
 #include <QStyledItemDelegate>
+#include <QFont>
 
 class DateTimeDelegate : public QStyledItemDelegate {
     Q_OBJECT
