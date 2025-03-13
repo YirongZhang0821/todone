@@ -2,7 +2,7 @@
 
 #include <QComboBox>
 
-PriorityDelegate::PriorityDelegate(QObject *parent) : QItemDelegate(parent) {}
+PriorityDelegate::PriorityDelegate(QObject *parent) : QStyledItemDelegate(parent) { mUrgentlyFont.setBold(true); }
 
 QWidget *PriorityDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
                                         const QModelIndex &index) const {
@@ -28,4 +28,18 @@ void PriorityDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
 void PriorityDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
                                             const QModelIndex &index) const {
     editor->setGeometry(option.rect);
+}
+
+void PriorityDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    
+    if (index.column() == 2) {  // Priority column
+        QString priority = index.data().toString();
+        if (priority == "\u7d27\u6025") {
+            painter->setPen(Qt::red);
+        } else {
+            painter->setPen(Qt::black);
+        }
+        painter->drawText(option.rect, Qt::AlignCenter, priority);
+    }
+    // QStyledItemDelegate::paint(painter, option, index);  // Drawing default cell contents
 }

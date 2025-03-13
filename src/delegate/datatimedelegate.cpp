@@ -1,6 +1,6 @@
 #include "datatimedelegate.h"
 
-DateTimeDelegate::DateTimeDelegate(QObject *parent) : QItemDelegate(parent) {}
+DateTimeDelegate::DateTimeDelegate(QObject *parent) : QStyledItemDelegate(parent) {}
 
 QWidget *DateTimeDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
                                         const QModelIndex &index) const {

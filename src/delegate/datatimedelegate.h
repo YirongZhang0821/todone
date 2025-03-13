@@ -2,9 +2,9 @@
 #define DATA_TIME_DELEGATE_H
 
 #include <QDateTimeEdit>
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
-class DateTimeDelegate : public QItemDelegate {
+class DateTimeDelegate : public QStyledItemDelegate {
     Q_OBJECT
 public:
     explicit DateTimeDelegate(QObject *parent = nullptr);

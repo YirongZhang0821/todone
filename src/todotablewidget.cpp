@@ -32,7 +32,8 @@ TodoTableWidget::TodoTableWidget(QWidget *parent)
     mSqlTableModel->setEditStrategy(QSqlTableModel::OnFieldChange);
     mSqlTableModel->select();
 
-    sortByPriority();
+    // sortByPriority();
+    // updateRowColors();
 
     //* Table View
     mSqlTableView->setModel(mSqlTableModel);
@@ -48,6 +49,9 @@ TodoTableWidget::TodoTableWidget(QWidget *parent)
     // PriorityDelegate
     PriorityDelegate *priority = new PriorityDelegate(this);
     mSqlTableView->setItemDelegateForColumn(2, priority);
+    // GlobalDelegate
+    // GlobalDelegate *global = new GlobalDelegate(this);
+    // mSqlTableView->setItemDelegate(global);
 
     //* Layout
     QVBoxLayout *vSqlLayout = new QVBoxLayout();
@@ -70,6 +74,7 @@ TodoTableWidget::TodoTableWidget(QWidget *parent)
     connect(mBtnAddTodo, &QPushButton::clicked, this, &TodoTableWidget::insertTodo);
     connect(mBtnDeleteTodo, &QPushButton::clicked, this, &TodoTableWidget::deleteTodo);
     connect(mSqlTableView, &QTableView::clicked, this, &TodoTableWidget::onCellSelected);
+    // connect(mSqlTableModel, &QSqlTableModel::dataChanged, this, &TodoTableWidget::updateRowColors);
     // connect(mSqlTableModel, &QSqlTableModel::dataChanged, this, &TodoTableWidget::sortByPriority);
 }
 
@@ -87,6 +92,8 @@ void TodoTableWidget::insertTodo() {
     mSqlTableModel->setData(mSqlTableModel->index(curRow, 3), curTime);         // deadline
     mSqlTableModel->setData(mSqlTableModel->index(curRow, 4), "");              // reminder
     mSqlTableModel->setData(mSqlTableModel->index(curRow, 5), "");              // note
+
+    updateRowColors();  // Update row colors after inserting a new row
 }
 
 void TodoTableWidget::deleteTodo() {
@@ -94,6 +101,8 @@ void TodoTableWidget::deleteTodo() {
     mSqlTableModel->removeRow(curRow);
     mSqlTableModel->submitAll();
     mSqlTableModel->select();  // refresh :-)
+
+    updateRowColors();  // Update row colors after deleting a row
 }
 
 void TodoTableWidget::completeTodo() {
@@ -114,5 +123,27 @@ void TodoTableWidget::sortByPriority() {
         qDebug() << "sortByPriority";
         mSqlTableModel->setSort(2, Qt::AscendingOrder);
         mSqlTableModel->select();
+    }
+}
+
+void TodoTableWidget::updateRowColors() {
+    for (int row = 0; row < mSqlTableModel->rowCount(); ++row) {
+        qDebug() << row;
+        QModelIndex index = mSqlTableModel->index(row, 2);  // Priority column
+        QString priority = mSqlTableModel->data(index).toString();
+        qDebug() << "Priority:" << priority;
+        if (priority == "\u7d27\u6025") {
+            qDebug() << "Red";
+            for (int col = 0; col < mSqlTableModel->columnCount(); ++col) {
+                mSqlTableView->model()->setData(mSqlTableModel->index(row, col), QColor(Qt::red).lighter(160),
+                                                Qt::BackgroundRole);
+            }
+        }
+        // } else {
+        //     for (int col = 0; col < mSqlTableModel->columnCount(); ++col) {
+        //         mSqlTableView->model()->setData(mSqlTableModel->index(row, col), QColor(Qt::white),
+        //         Qt::BackgroundRole);
+        //     }
+        // }
     }
 }

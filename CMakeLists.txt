@@ -18,9 +18,10 @@ set(SOURCES
     src/recordtextedit.cpp
     src/delegate/datatimedelegate.cpp
     src/delegate/prioritydelegate.cpp
+    src/delegate/globaldelegate.cpp
 )
 
-add_executable(todone WIN32 ${SOURCES})
+add_executable(todone ${SOURCES})
 target_sources(todone PRIVATE 
     ${CMAKE_SOURCE_DIR}/src/structure.h
     ${CMAKE_SOURCE_DIR}/src/todotablewidget.h
