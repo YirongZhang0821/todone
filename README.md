@@ -1,2 +1,2 @@
-building
-cmake -S . -B build -G "MinGW Makefiles"
+# todone
+Personal development for managing to-do lists and organizers
